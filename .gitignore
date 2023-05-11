@@ -316,6 +316,9 @@ paket-files/
 __pycache__/
 *.pyc
 
+*/env/*
+*/env1/*
+
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
