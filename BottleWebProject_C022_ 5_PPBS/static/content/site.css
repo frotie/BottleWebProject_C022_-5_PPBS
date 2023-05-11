@@ -1,5 +1,4 @@
 body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -39,4 +38,30 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+.w-70 {
+    width: 70% !important;
+}
+
+@font-face {
+    font-family: 'Rubik Light Light';
+    src: url('/static/fonts/Rubik-VariableFont_wght.ttf');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+li,
+p,
+span {
+    color: #143138 !important;
+    font-family: 'Rubik Light Light'!important;
+}
+
+body {
+    background-color: #E6E6E6;
 }

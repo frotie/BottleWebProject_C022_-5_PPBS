@@ -1,29 +1,14 @@
 % rebase('layout.tpl', title='Home Page', year=year)
 
-<div class="jumbotron">
-    <h1>Bottle</h1>
-    <p class="lead">Bottle is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://bottlepy.org/docs/dev/index.html" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Bottle gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://bottlepy.org/docs/dev/index.html">Learn more &raquo;</a></p>
+    <div class="col-md-7">
+        <h3>Имитационное моделирование.</h3>
+        <h3>Системы массового обслуживания</h3>
+        <p>Одним из методов исследования сложных систем, в том числе, и систем массового обслуживания (СМО) является метод имитационного моделирования, когда модель (как следует из названия вида моделирования) имитирует работу реальной системы, т.е. модель воспроизводит процесс функционирования реальной системы во времени.</p>
+        <p>Любая система, как известно, представляет собой совокупность взаимосвязанных элементов и, следовательно, построение ее адекватной имитационной модели предполагает имитацию процесса функционирования каждого отдельного элемента системы с обязательным сохранением логики и правил взаимодействия и развития составляющих систему элементов, как во времени, так и в пространстве (в том числе последовательность и параллелизм их во времени).</p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+
+    <div class="col-md-4 offset-md-1 mt-md-2">
+        <img src="/static/images/cat.png" class="img-fluid"/>
     </div>
 </div>
