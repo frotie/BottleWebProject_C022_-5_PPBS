@@ -28,6 +28,10 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
 
+    @bottle.route('/favicon.ico')
+    def favicon():
+        return bottle.static_file('images/favicon.ico', root=STATIC_ROOT)
+
     @bottle.route('/static/<filepath:path>')
     def server_static(filepath):
         """Handler for static files, used with the development server.

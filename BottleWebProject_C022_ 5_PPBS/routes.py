@@ -33,3 +33,8 @@ def about():
         message='Your application description page.',
         year=datetime.now().year
     )
+
+@route('/ons/<variant>')
+@view('ons')
+def ons(variant):
+    return dict(year=datetime.now().year)
