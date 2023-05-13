@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a href="/" class="nav-link">Главная</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">Об авторах</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="onsDd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Оценка надежности систем
@@ -34,9 +37,6 @@
                             <a class="dropdown-item" href="/ons/1">Вариант №1</a>
                             <a class="dropdown-item" href="/ons/4">Вариант №4</a>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/about" class="nav-link">Об авторах</a>
                     </li>
                 </ul>
             </div>

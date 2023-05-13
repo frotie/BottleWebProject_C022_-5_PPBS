@@ -19,7 +19,9 @@
 				</div>
 				
 				<div class="text-center">
-					<button class="btn btn-outline-secondary m-2"><i class="fa fs-14 fa-github"></i> GitHub</button>
+					<a href="https://github.com/frotie" target="_blank">
+						<button class="btn btn-outline-secondary m-2"><i class="fa fs-14 fa-github"></i> GitHub</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -43,7 +45,9 @@
 				</div>
 				
 				<div class="text-center">
-					<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					<a href="https://github.com/gurynych" target="_blank">
+						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -67,7 +71,9 @@
 						<p class="mt-2">Наш документовед и спонсор проекта. Без него и его денег ничего бы не получилось. Принимал участие в разработке страницы "Расчет СМО".</p>
 					</div>
 					
-					<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					<a href="https://github.com/Manfred246" target="_blank">
+						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -88,7 +94,9 @@
 						<p class="mt-2">А это я, пишу текст, который никто не будет читать. А также занимаюсь дизайном. Принимала участие в разработке страницы "Оценка надежности систем".</p>
 					</div>
 					
-					<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					<a href="https://github.com/KateSkoby" target="_blank">
+						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+					</a>
 				</div>
 			</div>
 		</div>
