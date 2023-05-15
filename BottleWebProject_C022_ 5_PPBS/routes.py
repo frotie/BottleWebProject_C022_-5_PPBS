@@ -2,7 +2,7 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view
+from bottle import route, view, post, request
 from datetime import datetime
 
 @route('/')
@@ -38,3 +38,8 @@ def about():
 @view('ons')
 def ons(variant):
     return dict(year=datetime.now().year)
+
+@post('/ons')
+@view('ons')
+def ons():
+    return request.forms.get(123);

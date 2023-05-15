@@ -19,6 +19,9 @@
     <Name>BottleWebProject_C022_ 5_PPBS</Name>
     <RootNamespace>BottleWebProject_C022_ 5_PPBS</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>unittest</TestFramework>
+    <UnitTestPattern>test*.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,9 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="models\MonteCarlo.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes.py" />
+    <Compile Include="tests_MonteCarlo.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="models\" />
     <Folder Include="static\" />
     <Folder Include="static\content\" />
     <Folder Include="static\fonts\" />
