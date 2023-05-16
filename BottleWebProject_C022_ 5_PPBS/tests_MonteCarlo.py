@@ -9,7 +9,7 @@ class tests_MonteCarlo(unittest.TestCase):
         node = Node(ConnectionType.Consistent)
         node.addElement(block)
 
-        actual = node.probability()
+        actual = node.analyticalProbability()
 
         self.assertEqual(prob, actual)
 
@@ -19,7 +19,7 @@ class tests_MonteCarlo(unittest.TestCase):
         node = Node(ConnectionType.Parallel)
         node.addElement(block)
 
-        actual = node.probability()
+        actual = node.analyticalProbability()
 
         self.assertEqual(prob, actual)
 
@@ -32,7 +32,7 @@ class tests_MonteCarlo(unittest.TestCase):
         node.addElement(block2)
         expected = 1 - (1 - prob) * (1 - prob)
 
-        actual = node.probability()
+        actual = node.analyticalProbability()
 
         self.assertEqual(expected, actual)
 
@@ -45,7 +45,7 @@ class tests_MonteCarlo(unittest.TestCase):
         node.addElement(block2)
         expected = prob * prob
 
-        actual = node.probability()
+        actual = node.analyticalProbability()
 
         self.assertEqual(expected, actual)
         
@@ -59,7 +59,7 @@ class tests_MonteCarlo(unittest.TestCase):
         childNode.addElement(block)
         expected = prob
 
-        actual = baseNode.probability()
+        actual = baseNode.analyticalProbability()
 
         self.assertEqual(expected, actual)
 
@@ -67,19 +67,19 @@ class tests_MonteCarlo(unittest.TestCase):
         node1 = Node(ConnectionType.Parallel)
         node1.addElement(WorkingBlock(0.7))
         node1.addElement(WorkingBlock(0.7))
-        node1ExpectedProb = 1 - (1 - node1.elements[0].probability()) * (1 - node1.elements[1].probability())
+        node1ExpectedProb = 1 - (1 - node1.elements[0].analyticalProbability()) * (1 - node1.elements[1].analyticalProbability())
 
         node2 = Node(ConnectionType.Parallel)
         node2.addElement(WorkingBlock(0.7))
         node2.addElement(WorkingBlock(0.7))
-        node2ExpectedProb = 1 - (1 - node2.elements[0].probability()) * (1 - node2.elements[1].probability())
+        node2ExpectedProb = 1 - (1 - node2.elements[0].analyticalProbability()) * (1 - node2.elements[1].analyticalProbability())
 
         node3 = Node(ConnectionType.Consistent)
         node3.addElement(node1)
         node3.addElement(node2)
         expected = node1ExpectedProb * node2ExpectedProb
 
-        actual = node3.probability()
+        actual = node3.analyticalProbability()
 
         self.assertEqual(expected, actual)
 
@@ -95,7 +95,19 @@ class tests_MonteCarlo(unittest.TestCase):
             if node.experience():
                 goodTimes += 1
 
-        self.assertAlmostEqual(node.probability(), goodTimes / tries, 0)
+        self.assertAlmostEqual(node.analyticalProbability(), goodTimes / tries, 0)
+
+    def test_GetErrorRate_SmallRateOnBigData(self):
+        prob = 0.7
+        node = Node(ConnectionType.Parallel)
+        node.addElement(WorkingBlock(prob))
+        node.addElement(WorkingBlock(prob))
+        tries = 100000;
+
+        actual = node.getErrorRate(tries)
+        
+        self.assertAlmostEqual(actual, 0, 2)
+
 
 if __name__ == '__main__':
     unittest.main()
