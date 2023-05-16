@@ -52,7 +52,7 @@ def ons():
 
         baseNode = Node(ConnectionType(userInput["baseConnection"]))
         node1 = Node(ConnectionType(userInput["block1"]["connection"]))
-        node2 = Node(ConnectionType(userInput["block1"]["connection"]))
+        node2 = Node(ConnectionType(userInput["block2"]["connection"]))
         triesCount = userInput["triesCount"]
     except:
         return error("Ошибка запроса")
