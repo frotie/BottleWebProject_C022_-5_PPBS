@@ -3,7 +3,7 @@
 <h3 class="text-center">Давайте знакомиться!</h3>
 
 <div class="row d-lg-flex align-items-center">
-	<div class="col-lg-3 mt-4">
+	<div class="col-lg-3 offset-lg-1 mt-4">
 		<div class="card profile-card shadow-sm border-0" id="firstCard">
 			<div class="card-body d-flex justify-content-start d-lg-block align-items-center">
 				<img src="/static/images/tema.png" alt="" class="img-fluid profile-card-image mx-auto d-block">
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-lg-4">
 		<img src="/static/images/cat2.png" id="dividerImage" class="img-fluid mx-auto d-block d-none d-lg-block mt-4" alt="">
 	</div>
 	<div class="col-lg-3 mt-4">
