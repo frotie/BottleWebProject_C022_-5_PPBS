@@ -40,7 +40,8 @@ def about():
 @route('/ons/<variant>')
 @view('ons')
 def ons(variant):
-    return dict(year=datetime.now().year)
+    firstVariant = variant == '1'
+    return dict(year=datetime.now().year, firstBlock = 3 if firstVariant else 2, secondBlock = 2 if firstVariant else 3)
 
 @post('/ons')
 def ons():
@@ -50,20 +51,22 @@ def ons():
         postdata = request.body.read()
         userInput = json.loads(postdata)
 
+        print(userInput)
+
         baseNode = Node(ConnectionType(userInput["baseConnection"]))
-        node1 = Node(ConnectionType(userInput["block1"]["connection"]))
-        node2 = Node(ConnectionType(userInput["block2"]["connection"]))
+        node1 = Node(ConnectionType(userInput["blockOne"]["connection"]))
+        node2 = Node(ConnectionType(userInput["blockTwo"]["connection"]))
         triesCount = userInput["triesCount"]
     except:
         return error("Ошибка запроса")
 
     try:
-        for x in userInput["block1"]["blocks"]:
+        for x in userInput["blockOne"]["blocks"]:
             if x > 1 or x < 0:
                 raise ValueError()
             node1.addElement(WorkingBlock(x))
 
-        for x in userInput["block2"]["blocks"]:
+        for x in userInput["blockTwo"]["blocks"]:
             if x > 1 or x < 0:
                 raise ValueError()
             node2.addElement(WorkingBlock(x))

@@ -11,6 +11,7 @@
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
     <script src="/static/scripts/jquery-3.6.4.min.js"></script>
     <script src="/static/scripts/respond.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>

@@ -23,6 +23,10 @@ body {
     background: linear-gradient(135deg, var(--gradient-one), var(--gradient-two));
 }
 
+.popupLoader{
+    border-color: #545454 rgba(0, 0, 0, 0) #545454 rgba(0, 0, 0, 0)!important;
+}
+
 .profile-card-image{
     max-width: 150px;
     max-height: 130px;
