@@ -35,8 +35,8 @@
                             Оценка надежности систем
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="onsDd">
-                            <a class="dropdown-item" href="/ons/1">Вариант №1</a>
-                            <a class="dropdown-item" href="/ons/4">Вариант №4</a>
+                            <a class="dropdown-item text-lg-center" href="/ons/1">Вариант №1</a>
+                            <a class="dropdown-item text-lg-center" href="/ons/4">Вариант №4</a>
                         </ul>
                     </li>
                 </ul>
