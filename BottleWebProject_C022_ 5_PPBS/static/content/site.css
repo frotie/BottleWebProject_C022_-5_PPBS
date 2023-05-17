@@ -1,7 +1,9 @@
 :root {
-  --gradient-one: rgba(228,162,174,1);
-  --gradient-two: rgba(241,193,121,1);
-  --github-button: #EBEAEA;
+    --gradient-one: rgba(228,162,174,1);
+    --gradient-two: rgba(241,193,121,1);
+    --gradient-three: rgba(238,185,134,0.5);
+    --gradient-four: rgba(233,174,152,0.5);
+    --github-button: #EBEAEA;
 }
 
 @font-face {
@@ -41,3 +43,10 @@ body {
 .btn:hover > i {
     color: var(--bs-btn-hover-color);
 }
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #000000;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--gradient-three), var(--gradient-four), var(--gradient-four), var(--gradient-four), var(--gradient-three));
+}
+
