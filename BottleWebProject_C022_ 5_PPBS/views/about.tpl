@@ -1,4 +1,4 @@
-% rebase('layout.tpl', title=title, year=year)
+% rebase('layout.tpl', title='Об авторах', year=year)
 
 <h3 class="text-center">Давайте знакомиться!</h3>
 
@@ -20,7 +20,7 @@
 				
 				<div class="text-center">
 					<a href="https://github.com/frotie" target="_blank">
-						<button class="btn btn-outline-secondary m-2"><i class="fa fs-14 fa-github"></i> GitHub</button>
+						<button class="btn btn-our-secondary m-2"><i class="fa fs-14 fa-github"></i> GitHub</button>
 					</a>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 				
 				<div class="text-center">
 					<a href="https://github.com/gurynych" target="_blank">
-						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+						<button class="btn btn-our-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
 					</a>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 					</div>
 					
 					<a href="https://github.com/Manfred246" target="_blank">
-						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+						<button class="btn btn-our-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
 					</a>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 					</div>
 					
 					<a href="https://github.com/KateSkoby" target="_blank">
-						<button class="btn btn-outline-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
+						<button class="btn btn-our-secondary m-2"><i class="fa fa-github"></i> GitHub</button>
 					</a>
 				</div>
 			</div>

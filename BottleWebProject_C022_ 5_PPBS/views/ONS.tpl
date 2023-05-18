@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="mb-3 text-center">
-                                <button type="button" class="btn btn-outline-secondary" id="addFirstBlock">
+                                <button type="button" class="btn btn-our-secondary" id="addFirstBlock">
                                     <i class="fa fa-plus"></i> Добавить элемент
                                 </button>
                             </div>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="mb-3 text-center">
-                                <button type="button" class="btn btn-outline-secondary" id="addSecondBlock">
+                                <button type="button" class="btn btn-our-secondary" id="addSecondBlock">
                                     <i class="fa fa-plus"></i> Добавить элемент
                                 </button>
                             </div>
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="mb-3 text-center">
-                                <button type="submit" class="btn btn-outline-secondary" id="finish">
+                                <button type="submit" class="btn btn-our-result" id="finish">
                                     <i class="fa fa-calculator"></i> Рассчитать
                                 </button>
                             </div>
@@ -111,8 +111,10 @@
     const styledSwal = Swal.mixin({
         background: 'linear-gradient(135deg, var(--gradient-one), var(--gradient-two))',
         customClass:{
-            loader: 'popupLoader'
+            loader: 'popupLoader',
+            confirmButton: 'btn btn-our-secondary'
         },
+        buttonsStyling: false
     });
     $(document).ready(function() {
         // Инициализация уже существущих полей в разметке
