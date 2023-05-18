@@ -12,7 +12,7 @@ import json
 @route('/home')
 @view('index')
 def home():
-    """Renders the home page."""
+    """ Отображение главной страницы """
     return dict(
         year=datetime.now().year
     )
@@ -20,7 +20,7 @@ def home():
 @route('/about')
 @view('about')
 def about():
-    """Renders the about page."""
+    """ Отображение страницы об авторах """
     return dict(
         year=datetime.now().year
     )
@@ -28,11 +28,13 @@ def about():
 @route('/ons/<variant>')
 @view('ons')
 def ons(variant):
+    """ Отображение ОНС по вариантам """
     firstVariant = variant == '1'
     return dict(year=datetime.now().year, firstBlock = 3 if firstVariant else 2, secondBlock = 2 if firstVariant else 3)
 
 @post('/ons')
 def ons():
+    """ Обработчик данных пользователя """
     response.content_type = 'application/json'
 
     try:
