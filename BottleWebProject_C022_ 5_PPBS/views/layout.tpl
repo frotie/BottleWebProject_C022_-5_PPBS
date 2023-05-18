@@ -17,7 +17,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light main-nav">
         <div class="container">
-            <a class="navbar-brand" href="/">Группа №5</a>
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/cogwheel.png" alt="" width="35" mr-2>
+                Метод Монте-Карло
+            </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,8 +38,8 @@
                             Оценка надежности систем
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="onsDd">
-                            <a class="dropdown-item text-lg-center" href="/ons/1">Вариант №1</a>
-                            <a class="dropdown-item text-lg-center" href="/ons/4">Вариант №4</a>
+                            <a class="dropdown-item text-lg-center" href="/ons/1">3х2 элемента</a>
+                            <a class="dropdown-item text-lg-center" href="/ons/4">2х3 элемента</a>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

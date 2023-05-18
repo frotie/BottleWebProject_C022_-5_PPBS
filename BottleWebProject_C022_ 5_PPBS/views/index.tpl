@@ -1,4 +1,4 @@
-% rebase('layout.tpl', title='Home Page', year=year)
+% rebase('layout.tpl', title='Главная', year=year)
 
 <div class="row d-md-flex align-items-md-center">
     <div class="offset-md-1 col-md-5">

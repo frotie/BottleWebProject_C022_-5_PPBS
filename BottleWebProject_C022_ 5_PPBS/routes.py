@@ -12,34 +12,23 @@ import json
 @route('/home')
 @view('index')
 def home():
-    """Renders the home page."""
+    """ Отображение главной страницы """
     return dict(
-        year=datetime.now().year
-    )
-
-@route('/contact')
-@view('contact')
-def contact():
-    """Renders the contact page."""
-    return dict(
-        title='Contact',
-        message='Your contact page.',
         year=datetime.now().year
     )
 
 @route('/about')
 @view('about')
 def about():
-    """Renders the about page."""
+    """ Отображение страницы об авторах """
     return dict(
-        title='About',
-        message='Your application description page.',
         year=datetime.now().year
     )
 
 @route('/ons/<variant>')
 @view('ons')
 def ons(variant):
+    """ Отображение ОНС по вариантам """
     firstVariant = variant == '1'
     return dict(year=datetime.now().year, firstBlock = 3 if firstVariant else 2, secondBlock = 2 if firstVariant else 3)
 
@@ -50,6 +39,7 @@ def smo():
 
 @post('/ons')
 def ons():
+    """ Обработчик данных пользователя """
     response.content_type = 'application/json'
 
     try:
