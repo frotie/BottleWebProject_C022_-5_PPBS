@@ -120,7 +120,7 @@
             initializeHandlers($(this));
         });
 
-        // Функция инициализация валидации
+        // Функция инициализации валидации
         function initializeHandlers(obj)
         {
             obj.on('change keyup paste', function() {
@@ -184,9 +184,11 @@
             createBlock(secondBlockIndex++, $("#block2Container"), $("#secondBlockTemplate"))
         }
 
+        // Событие отправки формы
         $("#mainForm").submit(function(e) {
             e.preventDefault()
 
+            // Нахождение невалидных полей
             if ($(this).find('.is-invalid').length > 0)
             {
                 scrollTo($(this).find('.is-invalid'))
@@ -197,6 +199,7 @@
                 return !this.value;
             });
 
+            // Проверка пустых полей
             if (emptyFields.length > 0)
             {
                 styledSwal.fire('Ошибка', 'Вы заполнили не все поля', 'error')
@@ -204,13 +207,15 @@
                 return;
             }
 
+            // Отключение формы на момент загрузки
             var submit = $(this).find('button[type=submit]')
             var submitText = submit.html()
             submit.html('<div class="spinner-border text-secondary" style="width: 25px; height: 25px" role="status"></div>')
             var disabled = $("#mainForm input[disabled], button[disabled], select[disabled]")
             $("#mainForm input, button, select").prop('disabled', 'disabled')
-
             $(".results").html('')
+
+            // Подготовка данных для отправки
             dataArr = {
                 triesCount: 0,
                 baseConnection: '',
@@ -238,6 +243,7 @@
                 dataArr.blockTwo.blocks.push(Number($(this).val()) / 100)
             });
 
+            // Отправка данных
             $.ajax({
                 url: "/ons",
                 method: 'post',
@@ -259,71 +265,11 @@
                 },
                 complete: function()
                 {
+                    // Включение формы обратно
                     $("#mainForm input, button, select").removeAttr('disabled')
                     disabled.prop('disabled', 'disabled')
                     submit.html(submitText)
                 }
-            });
-
-            return;
-
-            styledSwal.fire({
-                title: "Загрузка",
-                allowOutsideClick: () => !Swal.isLoading(),
-                didOpen: () => {
-                    Swal.showLoading()
-                    dataArr = {
-                        triesCount: 0,
-                        baseConnection: '',
-                        blockOne: {
-                            connection: '',
-                            blocks: []
-                        },
-                        blockTwo: {
-                            connection: '',
-                            blocks: []
-                        }
-                    };
-
-                    dataArr.triesCount = Number($("#triesCount").val())
-                    dataArr.baseConnection = Number($("#baseConnection").val())
-
-                    dataArr.blockOne.connection = Number($("#block1Connection").val())
-                    dataArr.blockTwo.connection = Number($("#block2Connection").val())
-
-                    $(".firstBlockProbability").each(function(el) {
-                        dataArr.blockOne.blocks.push(Number($(this).val()) / 100)
-                    });
-
-                    $(".secondBlockProbability").each(function(el) {
-                        dataArr.blockTwo.blocks.push(Number($(this).val()) / 100)
-                    });
-
-                    $.ajax({
-                        url: "/ons",
-                        method: 'post',
-                        dataType: 'json',
-                        contentType: 'application/json; charset=utf-8',
-                        data: JSON.stringify(dataArr),
-                        success: function(ans){
-                            if ('error' in ans)
-                            {
-                                styledSwal.fire('Ошибка', ans['error'], 'error')
-                            }
-                            else {
-                                styledSwal.fire({
-                                    icon: 'success',
-                                    title: 'Результаты',
-                                    html: 'Аналитическая вероятность: ' + ans['analitical'] + '<br>Эмпирическая вероятность: ' + ans['empirical'] + '<br>Абсолютная погрешность: ' + ans['errorRate']
-                                })
-                            }
-                        },
-                        error: function(err)
-                        {
-                            console.log(err)
-                        }
-                    });
-                },
             });
 
             function scrollTo(el)

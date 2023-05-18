@@ -81,7 +81,7 @@ def ons():
     errorRate = abs(analitical - empirical)
 
     # Возвращение значнеия
-    return json.dumps({ "analitical": analitical, "empirical": empirical, "errorRate": errorRate })
+    return json.dumps({ "analitical": round(analitical, 4), "empirical": round(empirical, 4), "errorRate": round(errorRate, 8) })
 
 def error(str):
     return json.dumps({ "error": str })
