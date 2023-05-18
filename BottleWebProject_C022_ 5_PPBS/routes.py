@@ -43,6 +43,11 @@ def ons(variant):
     firstVariant = variant == '1'
     return dict(year=datetime.now().year, firstBlock = 3 if firstVariant else 2, secondBlock = 2 if firstVariant else 3)
 
+@route('/smo')
+@view('smo')
+def smo():
+    return dict(year=datetime.now().year)
+
 @post('/ons')
 def ons():
     response.content_type = 'application/json'

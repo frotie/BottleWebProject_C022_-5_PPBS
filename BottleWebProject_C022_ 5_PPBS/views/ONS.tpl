@@ -1,5 +1,5 @@
 % rebase('layout.tpl', title='Оценка надёжности систем', year=year, firstBlock=firstBlock, secondBlock=secondBlock)
-
+        
 <div class="row">
     <div class="col-md-4 d-none d-md-block">
         <img src="/static/images/SittingCat.png" alt="" class="img-fluid">
