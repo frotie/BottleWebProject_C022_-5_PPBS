@@ -39,6 +39,15 @@
                             <a class="dropdown-item text-lg-center" href="/ons/4">Вариант №4</a>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Система массового обслуживания
+                        </a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item text-lg-center">Метод с отказами</a>
+                            <a class="dropdown-item text-lg-center">Метод с неогран. очередью</a>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
