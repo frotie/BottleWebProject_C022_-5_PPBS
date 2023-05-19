@@ -28,12 +28,31 @@ function initializeHandlersInt(obj) {
         var txt = $(this).val();
         var number = Number(txt);
         var remainder = number % 1;
-        if (txt != '' && remainder > 0) {
+        if (txt != '' && (remainder > 0 || txt.includes("."))) {
             $(this).addClass('is-invalid');           
-            $(this).siblings(".invalid-feedback").text("Введите целое число " + (number - remainder).toString() + " или " + (number - remainder + 1).toString());
-            console.log("Введите целое значение " + (number - remainder).toString() + " или " + (number - remainder + 1).toString());
+            $(this).siblings(".invalid-feedback").text("Введите ближайшее целое число: " + (number - remainder).toString() + " или " + (number - remainder + 1).toString());            
         }
         else if (txt != '' && (number != txt || number <= 0 || number > 100)) {
+            $(this).addClass('is-invalid');
+            $(this).siblings(".invalid-feedback").text("Введите число больше 0 до 100");
+        }
+        else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+}
+
+// Функция инициализации валидации целых значений
+function initializeHandlersQueue(obj) {
+    obj.on('change keyup paste', function () {
+        var txt = $(this).val();
+        var number = Number(txt);
+        var remainder = number % 1;        
+        if (txt != '' && (remainder > 0 || txt.includes("."))) {
+            $(this).addClass('is-invalid');
+            $(this).siblings(".invalid-feedback").text("Введите ближайшее целое число: " + (number - remainder).toString() + " или " + (number - remainder + 1).toString());            
+        }
+        else if (txt != '' && (number != txt || number < 0 || number > 100)) {
             $(this).addClass('is-invalid');
             $(this).siblings(".invalid-feedback").text("Введите число больше 0 до 100");
         }

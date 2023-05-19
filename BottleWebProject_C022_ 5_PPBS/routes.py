@@ -101,20 +101,26 @@ def SMOFailure():
 
 @post('/SMOQueue')
 def SMOQueue():
-    canalsCount = int(request.forms.get('canalsCount'))
-    intensityFlowOfRequests = float(request.forms.get('intensityFlowOfRequests'))
-    requestExecutionMinute = float(request.forms.get('requestExecutionMinute'))
-    endTimeMinute = float(request.forms.get('endTimeMinute'))
-    repeatCount = int(request.forms.get('repeatCount'))
-    requestInQueue = int(request.forms.get('requestInQueue'))
-    if (requestInQueue == 0):
-        requestInQueue = None
-    qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
-    result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)
-    return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
-                    intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
-                    endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
-                    result = "Математическое ожидание: %.2f" % result)
+    try:
+        canalsCount = int(request.forms.get('canalsCount'))
+        intensityFlowOfRequests = float(request.forms.get('intensityFlowOfRequests'))
+        requestExecutionMinute = float(request.forms.get('requestExecutionMinute'))
+        endTimeMinute = float(request.forms.get('endTimeMinute'))
+        repeatCount = int(request.forms.get('repeatCount'))
+        requestInQueue = int(request.forms.get('requestInQueue'))
+        if (requestInQueue == 0):
+            requestInQueue = None
+        qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
+        result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)
+        return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
+                        intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
+                        endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
+                        result = "Математическое ожидание: %.2f" % result)
+    except: 
+         return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
+                        intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
+                        endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
+                        result = "Неверный ввод")
 
 def error(str):
     return json.dumps({ "error": str })

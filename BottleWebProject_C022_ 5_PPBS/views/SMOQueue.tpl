@@ -90,7 +90,7 @@ $(document).ready(function(){
         initializeHandlersInt($(this));
     });
     $("#requestInQueue").each(function () {
-        initializeHandlersInt($(this));
+        initializeHandlersQueue($(this));
     });
     $("#repeatCount").each(function () {
         initializeHandlersInt($(this));
