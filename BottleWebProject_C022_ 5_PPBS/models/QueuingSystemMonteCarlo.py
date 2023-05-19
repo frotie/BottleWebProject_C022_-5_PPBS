@@ -15,8 +15,9 @@ class QueuingSystemMonteCarlo:
         self.servedRequestsCounter = 0
 
 
-    def generateRequest(self):
-        r = random.uniform(0.0001, 1)        
+    def generateRequest(self, value = None):
+        if (value is None): r = random.uniform(0.0001, 1)
+        else: r = value
         self.timeBetweenTwoRequestsMinute = -(1.0 / self.intensityFlowOfRequests) * math.log(r)
         self.startServiceMomentMinute += self.timeBetweenTwoRequestsMinute
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute
@@ -29,16 +30,21 @@ class QueuingSystemMonteCarlo:
         self.requestsCounter = 0
         self.servedRequestsCounter = 0
 
-    def monteCarloMethodWithFailure(self):
+    def monteCarloMethodWithFailure(self, r):
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute;
         if (self.endServiceMomentMinute > self.endTimeMinute):
             return self.servedRequestsCounter
 
+        self.servedRequestsCounter
         self.canals[0] = self.endServiceMomentMinute
+        index = 0
         while True:
             self.requestsCounter += 1
-            self.generateRequest()
+            if (len(r) == 0): self.generateRequest()
+            else:
+                self.generateRequest(r[index])
+            
             if (self.endServiceMomentMinute > self.endTimeMinute):                
                 break;
             
@@ -53,7 +59,7 @@ class QueuingSystemMonteCarlo:
 
         return self.servedRequestsCounter
 
-    def monteCarloMethodWithQueue(self, maxRequestInQueue):
+    def monteCarloMethodWithQueue(self, r, maxRequestInQueue):
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute
         queue1 = []
@@ -62,10 +68,15 @@ class QueuingSystemMonteCarlo:
 
         self.servedRequestsCounter += 1
         self.canals[0] = self.endServiceMomentMinute
+        index = 0
         while True:
 
             self.requestsCounter += 1
-            self.generateRequest()
+            if (len(r) == 0): self.generateRequest()
+            else:
+                self.generateRequest(r[index])
+                index += 1
+            
             if (self.endServiceMomentMinute > self.endTimeMinute):
                 break
 
@@ -95,13 +106,13 @@ class QueuingSystemMonteCarlo:
     def getMathematicalExpectationQSWithFailure(self, repeatCount):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithFailure()
+            result += self.monteCarloMethodWithFailure(None)
             
         return result / repeatCount;
 
     def getMathematicalExpectationQSWithQueue(self, repeatCount, requestInQueue):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithQueue(requestInQueue)
+            result += self.monteCarloMethodWithQueue(None, requestInQueue)
             
         return result / repeatCount;
