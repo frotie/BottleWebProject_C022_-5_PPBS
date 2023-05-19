@@ -85,6 +85,9 @@ $(document).ready(function(){
     $("#canalsCount").each(function () {
         initializeHandlersInt($(this));
     });
+    $("#repeatCount").each(function () {
+        initializeHandlersInt($(this));
+    });
 });
 </script>
 
