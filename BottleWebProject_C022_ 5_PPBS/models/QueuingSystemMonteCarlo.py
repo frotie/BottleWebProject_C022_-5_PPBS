@@ -30,7 +30,7 @@ class QueuingSystemMonteCarlo:
         self.requestsCounter = 0
         self.servedRequestsCounter = 0
 
-    def monteCarloMethodWithFailure(self, r):
+    def monteCarloMethodWithFailure(self, randomData = []):
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute;
         if (self.endServiceMomentMinute > self.endTimeMinute):
@@ -41,9 +41,9 @@ class QueuingSystemMonteCarlo:
         index = 0
         while True:
             self.requestsCounter += 1
-            if (len(r) == 0): self.generateRequest()
+            if (len(randomData) == 0): self.generateRequest()
             else:
-                self.generateRequest(r[index])
+                self.generateRequest(randomData[index])
             
             if (self.endServiceMomentMinute > self.endTimeMinute):                
                 break;
@@ -59,7 +59,7 @@ class QueuingSystemMonteCarlo:
 
         return self.servedRequestsCounter
 
-    def monteCarloMethodWithQueue(self, r, maxRequestInQueue):
+    def monteCarloMethodWithQueue(self, maxRequestInQueue, randomData = []):
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute
         queue1 = []
@@ -72,9 +72,9 @@ class QueuingSystemMonteCarlo:
         while True:
 
             self.requestsCounter += 1
-            if (len(r) == 0): self.generateRequest()
+            if (len(randomData) == 0): self.generateRequest()
             else:
-                self.generateRequest(r[index])
+                self.generateRequest(randomData[index])
                 index += 1
             
             if (self.endServiceMomentMinute > self.endTimeMinute):
@@ -110,9 +110,9 @@ class QueuingSystemMonteCarlo:
             
         return result / repeatCount;
 
-    def getMathematicalExpectationQSWithQueue(self, repeatCount, requestInQueue):
+    def getMathematicalExpectationQSWithQueue(self, repeatCount, maxRequestInQueue):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithQueue(None, requestInQueue)
+            result += self.monteCarloMethodWithQueue(maxRequestInQueue)
             
         return result / repeatCount;
