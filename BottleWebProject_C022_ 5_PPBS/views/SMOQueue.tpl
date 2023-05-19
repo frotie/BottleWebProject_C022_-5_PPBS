@@ -13,36 +13,54 @@
 
         <div class="card profile-card shadow-sm border-0 mt-2">
             <div class="card-body">
-                <form method="post" action="/SMOQueue">
+                <form method="post" action="/SMOQueue" class="needs-validation" id="mainForm">
                     <div class="row">                    
                         <div class="col-md-4 mb-2">                        
                             <div class="mb-3">
                                 <label class="form-label">Кол-во каналов</label>
-                                <input type="number" class="form-control" name="canalsCount" value={{canalsCount}}></input>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="canalsCount" name="canalsCount" value={{canalsCount}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>                                
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Конечное время</label> 
-                                <input type="number" step="0.01 " class="form-control" name="endTimeMinute" value={{endTimeMinute}}></input>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="endTimeMinute" name="endTimeMinute" value={{endTimeMinute}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>                                  
                             </div>                                              
                         </div>
                         <div class="col-md-4 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Коэффициент λ</label>
-                                <input type="number" step="any" class="form-control" name="intensityFlowOfRequests" value={{intensityFlowOfRequests}}></input>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="intensityFlowOfRequests" name="intensityFlowOfRequests" value={{intensityFlowOfRequests}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>                                 
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Кол-во итераций</label> 
-                                <input type="number" class="form-control" name="repeatCount" value={{repeatCount}}></input>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="repeatCount" name="repeatCount" value={{repeatCount}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>                                 
                             </div> 
                         </div>
                         <div class="col-md-4 mb-2">
                             <div class="mb-3">
                                 <label class="form-label">Время обслуживания заявки</label>
-                                <input type="number" step="any" class="form-control" name="requestExecutionMinute" value={{requestExecutionMinute}}></input>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="requestExecutionMinute" name="requestExecutionMinute" value={{requestExecutionMinute}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>                                
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Ограничения очереди*</label> 
-                                <input type="number" class="form-control" name="requestInQueue" value={{requestInQueue}}></input>
+                                <label class="form-label">Ограничения очереди*</label>                                 
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="requestInQueue" name="requestInQueue" value={{requestInQueue}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div> 
                                 <style>.explanation{font-size: 10px;}</style>
                                 <p class="explanation">* 0 - неограниченно</p>
                             </div> 
@@ -61,4 +79,23 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){   
+    // Инициализация уже существущих полей в разметке
+    $("#mainForm input[type=text]").each(function () {
+        initializeHandlersFloat($(this));
+    });
+    $("#canalsCount").each(function () {
+        initializeHandlersInt($(this));
+    });
+    $("#requestInQueue").each(function () {
+        initializeHandlersInt($(this));
+    });
+    $("#repeatCount").each(function () {
+        initializeHandlersInt($(this));
+    });
+});
+</script>
+
 <script src="/static/scripts/SMO_logic.js"></script>
