@@ -43,7 +43,8 @@
                             <div class="mb-3">
                                 <label class="form-label">Ограничения очереди*</label> 
                                 <input type="number" class="form-control" name="requestInQueue" value={{requestInQueue}}></input>
-                                <p>* 0 - неограниченно</p>
+                                <style>.explanation{font-size: 10px;}</style>
+                                <p class="explanation">* 0 - неограниченно</p>
                             </div> 
                         </div>
                     </div>
@@ -53,8 +54,8 @@
                         </button>
                     </div>
                 </form>
-                <div class="mb-3 omsResult">
-                    <p class="results">{{result}}</p>
+                <div class="mb-3">
+                    <p class="results d-flex justify-content-center">{{result}}</p>
                 </div>
             </div>                        
         </div>
