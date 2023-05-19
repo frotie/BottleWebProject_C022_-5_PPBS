@@ -34,14 +34,17 @@ class QueuingSystemMonteCarlo:
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute;
         if (self.endServiceMomentMinute > self.endTimeMinute):
+            return self.servedRequestsCounter        
+        if (self.endServiceMomentMinute > self.endTimeMinute):
             return self.servedRequestsCounter
 
-        self.servedRequestsCounter
         self.canals[0] = self.endServiceMomentMinute
+        self.servedRequestsCounter += 1
         index = 0
         while True:
             self.requestsCounter += 1
-            if (len(randomData) == 0): self.generateRequest()
+            if (len(randomData) == 0): 
+                self.generateRequest()
             else:
                 self.generateRequest(randomData[index])
             
@@ -62,17 +65,18 @@ class QueuingSystemMonteCarlo:
     def monteCarloMethodWithQueue(self, maxRequestInQueue, randomData = []):
         self.clearFields()
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute
-        queue1 = []
+        queue1 = []        
         if (self.endServiceMomentMinute > self.endTimeMinute):
             return self.servedRequestsCounter
 
-        self.servedRequestsCounter += 1
         self.canals[0] = self.endServiceMomentMinute
+        self.servedRequestsCounter += 1
         index = 0
         while True:
 
             self.requestsCounter += 1
-            if (len(randomData) == 0): self.generateRequest()
+            if (len(randomData) == 0): 
+                self.generateRequest()
             else:
                 self.generateRequest(randomData[index])
                 index += 1
@@ -106,7 +110,7 @@ class QueuingSystemMonteCarlo:
     def getMathematicalExpectationQSWithFailure(self, repeatCount):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithFailure(None)
+            result += self.monteCarloMethodWithFailure()
             
         return result / repeatCount;
 

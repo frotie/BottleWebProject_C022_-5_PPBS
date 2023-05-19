@@ -100,10 +100,9 @@ def SMOFailure():
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                         endTimeMinute = endTimeMinute, repeatCount = repeatCount, result = "Математическое ожидание: %.2f" % result)
     except: 
-         return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
+         return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
-                        endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
-                        result = "Неверный ввод")
+                        endTimeMinute = endTimeMinute, repeatCount = repeatCount,result = "Неверный ввод")
 
 @post('/SMOQueue')
 def SMOQueue():

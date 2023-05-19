@@ -81,13 +81,10 @@ $(document).ready(function(){
     // Инициализация уже существущих полей в разметке
     $("#mainForm input[type=text]").each(function () {
         initializeHandlersFloat($(this));
-    });
-    $("#canalsCount").each(function () {
-        initializeHandlersInt($(this));
-    });
-    $("#repeatCount").each(function () {
-        initializeHandlersInt($(this));
-    });
+    });    
+
+    initializeHandlersInt($("#canalsCount"));
+    initializeHandlersInt($("#repeatCount"));    
 });
 </script>
 
