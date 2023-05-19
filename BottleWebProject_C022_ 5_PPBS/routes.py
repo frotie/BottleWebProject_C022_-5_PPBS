@@ -107,6 +107,8 @@ def SMOQueue():
     endTimeMinute = float(request.forms.get('endTimeMinute'))
     repeatCount = int(request.forms.get('repeatCount'))
     requestInQueue = int(request.forms.get('requestInQueue'))
+    if (requestInQueue == 0):
+        requestInQueue = None
     qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
     result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)
     return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
