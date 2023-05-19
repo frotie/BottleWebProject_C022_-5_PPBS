@@ -3,7 +3,8 @@ Routes and views for the bottle application.
 """
 
 from models.MonteCarlo import WorkingBlock, Node, ConnectionType
-from bottle import route, view, post, request, response
+from models.QueuingSystemMonteCarlo import QueuingSystemMonteCarlo
+from bottle import route, view, post, request, response, template
 from datetime import datetime
 import json
 
@@ -32,10 +33,16 @@ def ons(variant):
     firstVariant = variant == '1'
     return dict(year=datetime.now().year, firstBlock = 3 if firstVariant else 2, secondBlock = 2 if firstVariant else 3)
 
-@route('/smo')
-@view('smo')
+@route('/smoqueue')
+@view('smoqueue')
 def smo():
     return dict(year=datetime.now().year)
+
+@route('/smofailure')
+@view('smofailure')
+def smo():
+    return dict(year=datetime.now().year, canalsCount = "", intensityFlowOfRequests = "",
+               requestExecutionMinute = "", endTimeMinute = "", repeatCount = "", result = "")
 
 @post('/ons')
 def ons():
@@ -77,6 +84,19 @@ def ons():
 
     # Возвращение значнеия
     return json.dumps({ "analitical": round(analitical, 4), "empirical": round(empirical, 4), "errorRate": round(errorRate, 8) })
+
+@post('/SMOFailure')
+def SMOFailure():
+    canalsCount = int(request.forms.get('canalsCount'))
+    intensityFlowOfRequests = float(request.forms.get('intensityFlowOfRequests'))
+    requestExecutionMinute = float(request.forms.get('requestExecutionMinute'))
+    endTimeMinute = float(request.forms.get('endTimeMinute'))
+    repeatCount = int(request.forms.get('repeatCount'))
+    qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
+    result = qs.getMathematicalExpectationQSWithFailure(repeatCount)
+    return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
+                    intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
+                    endTimeMinute = endTimeMinute, repeatCount = repeatCount, result = "Математическое ожидание: %.2f" % result)
 
 def error(str):
     return json.dumps({ "error": str })

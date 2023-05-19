@@ -47,8 +47,8 @@
                             Система массового обслуживания
                         </a>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item text-lg-center" href="/smo">Метод с отказами</a>
-                            <a class="dropdown-item text-lg-center">Метод с неогран. очередью</a>
+                            <a class="dropdown-item text-lg-center" href="/smofailure">С отказами</a>
+                            <a class="dropdown-item text-lg-center" href="/smoqueue">С очередью</a>
                         </ul>
                     </li>
                 </ul>

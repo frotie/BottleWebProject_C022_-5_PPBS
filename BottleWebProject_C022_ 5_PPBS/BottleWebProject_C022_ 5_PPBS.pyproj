@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="models\QueuingSystemMonteCarlo.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\MonteCarlo.py">
       <SubType>Code</SubType>
     </Compile>
@@ -76,7 +79,8 @@
     <Content Include="static\scripts\_references.js" />
     <Content Include="views\about.tpl" />
     <Content Include="views\ONS.tpl" />
-    <Content Include="views\SMO.tpl" />
+    <Content Include="views\SMOFailure.tpl" />
+    <Content Include="views\SMOQueue.tpl" />
     <Content Include="views\index.tpl" />
     <Content Include="views\layout.tpl" />
   </ItemGroup>
