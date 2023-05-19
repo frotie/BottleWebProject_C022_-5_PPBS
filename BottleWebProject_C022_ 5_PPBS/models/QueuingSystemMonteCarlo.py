@@ -60,6 +60,7 @@ class QueuingSystemMonteCarlo:
         if (self.endServiceMomentMinute > self.endTimeMinute):
             return self.servedRequestsCounter
 
+        self.servedRequestsCounter += 1
         self.canals[0] = self.endServiceMomentMinute
         while True:
 
@@ -69,11 +70,11 @@ class QueuingSystemMonteCarlo:
                 break
 
             for i in range(self.canalsCount):
-                if queue1.count() > 0 and self.canals[i] <= queue1[0]:
+                if len(queue1) > 0 and self.canals[i] <= queue1[0]:
                     self.canals[i] = queue1[0] + self.requestExecutionMinute
                     self.servedRequestsCounter += 1
-                    queue1.remove(0)
-                    if queue1.count() < maxRequestInQueue or maxRequestInQueue is not None:
+                    queue1.pop(0)
+                    if maxRequestInQueue is None or len(queue1) < maxRequestInQueue:
                         queue1.append(min(self.canals))
                     break
 
@@ -82,7 +83,7 @@ class QueuingSystemMonteCarlo:
                     self.servedRequestsCounter += 1
                     break
 
-                if i == self.canalsCount - 1 and (queue1.count() < maxRequestInQueue or maxRequestInQueue is not None):
+                if i == self.canalsCount - 1 and (maxRequestInQueue is None or len(queue1) < maxRequestInQueue):
                     queue1.append(min(self.canals))
                     break
 
