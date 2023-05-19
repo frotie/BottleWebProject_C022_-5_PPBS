@@ -16,7 +16,7 @@ class QueuingSystemMonteCarlo:
 
 
     def generateRequest(self):
-        r = random.uniform(0.0001, 1)               
+        r = random.uniform(0.0001, 1)        
         self.timeBetweenTwoRequestsMinute = -(1.0 / self.intensityFlowOfRequests) * math.log(r)
         self.startServiceMomentMinute += self.timeBetweenTwoRequestsMinute
         self.endServiceMomentMinute = self.startServiceMomentMinute + self.requestExecutionMinute
@@ -99,9 +99,9 @@ class QueuingSystemMonteCarlo:
             
         return result / repeatCount;
 
-    def getMathematicalExpectationQSWithQueue(self, repeatCount):
+    def getMathematicalExpectationQSWithQueue(self, repeatCount, requestInQueue):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithFailure()
+            result += self.monteCarloMethodWithQueue(requestInQueue)
             
         return result / repeatCount;

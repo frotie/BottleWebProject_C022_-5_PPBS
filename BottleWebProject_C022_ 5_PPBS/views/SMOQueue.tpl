@@ -13,48 +13,51 @@
 
         <div class="card profile-card shadow-sm border-0 mt-2">
             <div class="card-body">
-                <div class="row">                    
-                    <div class="col-md-4 mb-2">                        
-                        <div class="mb-3">
-                            <label class="form-label">Коэффициент λ</label>
-                            <input type="number" class="form-control">
+                <form method="post" action="/SMOQueue">
+                    <div class="row">                    
+                        <div class="col-md-4 mb-2">                        
+                            <div class="mb-3">
+                                <label class="form-label">Кол-во каналов</label>
+                                <input type="number" class="form-control" name="canalsCount" value={{canalsCount}}></input>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Конечное время</label> 
+                                <input type="number" step="0.01 " class="form-control" name="endTimeMinute" value={{endTimeMinute}}></input>
+                            </div>                                              
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Кол-во повторений</label> 
-                            <input type="number" class="form-control">
-                        </div>                                              
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <div class="mb-3">
-                            <label class="form-label">Кол-во каналов</label>
-                            <input type="number" class="form-control">
+                        <div class="col-md-4 mb-2">
+                            <div class="mb-3">
+                                <label class="form-label">Коэффициент λ</label>
+                                <input type="number" step="any" class="form-control" name="intensityFlowOfRequests" value={{intensityFlowOfRequests}}></input>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Кол-во итераций</label> 
+                                <input type="number" class="form-control" name="repeatCount" value={{repeatCount}}></input>
+                            </div> 
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Интенсивность потока</label> 
-                            <input type="number" class="form-control">
-                        </div> 
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <div class="mb-3">
-                            <label class="form-label">Время обслуживания</label>
-                            <input type="number" class="form-control">
+                        <div class="col-md-4 mb-2">
+                            <div class="mb-3">
+                                <label class="form-label">Время обслуживания заявки</label>
+                                <input type="number" step="any" class="form-control" name="requestExecutionMinute" value={{requestExecutionMinute}}></input>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Ограничения очереди*</label> 
+                                <input type="number" class="form-control" name="requestInQueue" value={{requestInQueue}}></input>
+                                <p>* 0 - неограниченно</p>
+                            </div> 
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Ограничения очереди*</label> 
-                            <input type="number" class="form-control">
-                            <p>* 0 - неограниченно</p>
-                        </div> 
                     </div>
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn btn-our-result" id="finish">
+                            <i class="fa fa-calculator"></i> Рассчитать
+                        </button>
+                    </div>
+                </form>
+                <div class="mb-3 omsResult">
+                    <p class="results">{{result}}</p>
                 </div>
-            </div>
-            <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-our-result" id="finish">
-                    <i class="fa fa-calculator"></i> Рассчитать
-                </button>
-            </div>
-            <div class="mb-3">
-                <p class="results"></p>
-            </div>
+            </div>                        
         </div>
     </div>
 </div>
+<script src="/static/scripts/SMO_logic.js"></script>

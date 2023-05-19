@@ -36,7 +36,8 @@ def ons(variant):
 @route('/smoqueue')
 @view('smoqueue')
 def smo():
-    return dict(year=datetime.now().year)
+    return dict(year=datetime.now().year, canalsCount = "", intensityFlowOfRequests = "", requestExecutionMinute = "",
+                endTimeMinute = "", repeatCount = "", requestInQueue = "",result = "")
 
 @route('/smofailure')
 @view('smofailure')
@@ -97,6 +98,21 @@ def SMOFailure():
     return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
                     intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                     endTimeMinute = endTimeMinute, repeatCount = repeatCount, result = "Математическое ожидание: %.2f" % result)
+
+@post('/SMOQueue')
+def SMOQueue():
+    canalsCount = int(request.forms.get('canalsCount'))
+    intensityFlowOfRequests = float(request.forms.get('intensityFlowOfRequests'))
+    requestExecutionMinute = float(request.forms.get('requestExecutionMinute'))
+    endTimeMinute = float(request.forms.get('endTimeMinute'))
+    repeatCount = int(request.forms.get('repeatCount'))
+    requestInQueue = int(request.forms.get('requestInQueue'))
+    qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
+    result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)
+    return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
+                    intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
+                    endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
+                    result = "Математическое ожидание: %.2f" % result)
 
 def error(str):
     return json.dumps({ "error": str })
