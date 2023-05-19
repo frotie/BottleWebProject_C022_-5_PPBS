@@ -13,38 +13,53 @@
 
         <div class="card profile-card shadow-sm border-0 mt-2 mb-4 me-2">
             <div class="card-body">
-                <form method="post" action="/SMOFailure">
+                <form action="/SMOFailure" method="post" class="needs-validation" id="mainForm">
                     <div class="row justify-content-center">
                         <div class="col-md-4 mb-4">
                             <div class="mb-3">
-                                <label class="form-label d-flex justify-content-center">Кол-во каналов</label>
-                                <input type="number" class="form-control" name="canalsCount" value={{canalsCount}}></input>
+                                <label class="form-label d-flex justify-content-center" for="canalsCount">Кол-во каналов</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="canalsCount" name="canalsCount" value={{canalsCount}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>                        
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="mb-3">
-                                <label class="form-label d-flex justify-content-center">Коэффициент λ</label>
-                                <input type="number" step="any" class="form-control" name="intensityFlowOfRequests" value={{intensityFlowOfRequests}}></input>
+                                <label class="form-label d-flex justify-content-center" for="intensityFlowOfRequests">Коэффициент λ</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="intensityFlowOfRequests" name="intensityFlowOfRequests" value={{intensityFlowOfRequests}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>                                                          
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="mb-3">
-                                <label class="form-label d-flex justify-content-center">Время обслуживания заявки</label>
-                                <input type="number" step="any" class="form-control" name="requestExecutionMinute" value={{requestExecutionMinute}}></input>
+                                <label class="form-label d-flex justify-content-center" for="requestExecutionMinute">Время обслуживания заявки</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="requestExecutionMinute" name="requestExecutionMinute" value={{requestExecutionMinute}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>                        
                         </div>                
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-4 mb-4">
                             <div class="mb-3">
-                                <label class="form-label d-flex justify-content-center">Конечное время</label> 
-                                <input type="number" step="0.01 " class="form-control" name="endTimeMinute" value={{endTimeMinute}}></input>
+                                <label class="form-label d-flex justify-content-center" for="endTimeMinute">Конечное время</label> 
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="endTimeMinute" name="endTimeMinute" value={{endTimeMinute}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-4">
                             <div class="mb-3">
-                                <label class="form-label d-flex justify-content-center">Кол-во итераций</label>
-                                <input type="number" class="form-control" name="repeatCount" value={{repeatCount}}></input>
+                                <label class="form-label d-flex justify-content-center" for="repeatCount">Кол-во итераций</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="repeatCount" name="repeatCount" value={{repeatCount}}></input>
+                                    <div class="invalid-feedback"></div>
+                                </div>
                             </div>
                         </div>
                     </div>                
@@ -55,10 +70,22 @@
                     </div>
                 </form>
                 <div class="mb-3">
-                <p class="results">{{result}}</p>
+                <p class="results d-flex justify-content-center">{{result}}</p>
             </div>            
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){   
+    // Инициализация уже существущих полей в разметке
+    $("#mainForm input[type=text]").each(function () {
+        initializeHandlersFloat($(this));
+    });
+    $("#canalsCount").each(function () {
+        initializeHandlersInt($(this));
+    });
+});
+</script>
 
 <script src="/static/scripts/SMO_logic.js"></script>
