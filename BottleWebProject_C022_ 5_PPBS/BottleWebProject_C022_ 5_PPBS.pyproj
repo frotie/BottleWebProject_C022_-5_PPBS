@@ -43,6 +43,9 @@
     <Compile Include="tests_MonteCarlo.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="test_QueuingSystemMonteCarlo.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="models\" />

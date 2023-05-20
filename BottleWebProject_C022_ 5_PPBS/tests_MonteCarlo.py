@@ -7,7 +7,7 @@ class tests_MonteCarlo(unittest.TestCase):
         prob = 0.7
         block = WorkingBlock(prob)
         node = Node(ConnectionType.Consistent)
-        node.addElement(block)
+        node.addElement(block)        
 
         actual = node.analyticalProbability()
 

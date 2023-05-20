@@ -2,7 +2,9 @@ import math
 import random
 
 class QueuingSystemMonteCarlo:
-    def __init__(self, canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute):         
+    def __init__(self, canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute):
+        if (canalsCount <= 0 or intensityFlowOfRequests <= 0 or requestExecutionMinute < 0 or endTimeMinute < 0):
+            raise ValueError("IllegalArgumentError")
         self.canals = [0] * canalsCount
         self.canalsCount = canalsCount
         self.intensityFlowOfRequests = intensityFlowOfRequests
@@ -40,13 +42,15 @@ class QueuingSystemMonteCarlo:
 
         self.canals[0] = self.endServiceMomentMinute
         self.servedRequestsCounter += 1
+        self.requestsCounter += 1
         index = 0
         while True:
             self.requestsCounter += 1
-            if (len(randomData) == 0): 
+            if (len(randomData) == 0 or index >= len(randomData)): 
                 self.generateRequest()
             else:
                 self.generateRequest(randomData[index])
+                index += 1
             
             if (self.endServiceMomentMinute > self.endTimeMinute):                
                 break;
@@ -71,11 +75,12 @@ class QueuingSystemMonteCarlo:
 
         self.canals[0] = self.endServiceMomentMinute
         self.servedRequestsCounter += 1
+        self.requestsCounter += 1
         index = 0
         while True:
 
             self.requestsCounter += 1
-            if (len(randomData) == 0): 
+            if (len(randomData) == 0 or index >= len(randomData)): 
                 self.generateRequest()
             else:
                 self.generateRequest(randomData[index])
@@ -107,16 +112,23 @@ class QueuingSystemMonteCarlo:
         return self.servedRequestsCounter
 
 
-    def getMathematicalExpectationQSWithFailure(self, repeatCount):
+    def getMathematicalExpectationQSWithFailure(self, repeatCount, randomData = [[]]):
         result = 0
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithFailure()
+            if (len(randomData) == 0 or i >= len(randomData)): result += self.monteCarloMethodWithFailure()
+            else: result += self.monteCarloMethodWithFailure(randomData[i])
+
             
         return result / repeatCount;
 
-    def getMathematicalExpectationQSWithQueue(self, repeatCount, maxRequestInQueue):
+    def getMathematicalExpectationQSWithQueue(self, repeatCount, maxRequestInQueue, randomData = [[]]):
         result = 0
+        if (repeatCount is None or randomData is None):
+            raise TypeError("NullPointerError")
         for i in range(repeatCount):
-            result += self.monteCarloMethodWithQueue(maxRequestInQueue)
+            if (len(randomData) == 0 or i >= len(randomData)): result += self.monteCarloMethodWithQueue(maxRequestInQueue)
+            else: 
+                result += self.monteCarloMethodWithQueue(maxRequestInQueue, randomData[i])
+               
             
         return result / repeatCount;
