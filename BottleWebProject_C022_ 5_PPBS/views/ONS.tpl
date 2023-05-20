@@ -84,10 +84,10 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 has-validation">
                                 <label for="triesCount" class="form-label">Количество испытаний</label>
                                 <input type="number" id="triesCount" class="form-control" value="100">
-
+                                <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="mb-3 text-center">
@@ -122,6 +122,9 @@ $(document).ready(function(){
     {
         createBlock(secondBlockIndex++, $("#block2Container"), $("#secondBlockTemplate"))
     }
+
+    // Добавление валидации для поля количества попыток
+    addNumberValidation($("#triesCount"), 1, 1e6)
 
     // Инициализация уже существущих полей в разметке
     $("#mainForm input[type=text]").each(function () {

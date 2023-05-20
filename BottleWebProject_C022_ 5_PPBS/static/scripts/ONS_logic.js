@@ -7,19 +7,23 @@ const styledSwal = Swal.mixin({
     buttonsStyling: false
 });
 
-// Функция инициализации валидации
-function initializeHandlers(obj) {
+function addNumberValidation(obj, minValue, maxValue) {
     obj.on('change keyup paste', function () {
         var txt = $(this).val();
         var number = Number(txt);
-        if (txt != '' && (number != txt || number > 100 || number < 0)) {
+        if (txt != '' && (number != txt || number > maxValue || number < minValue)) {
             $(this).addClass('is-invalid');
-            $(this).siblings(".invalid-feedback").text("Введите значение вероятности от 0 до 100");
+            $(this).siblings(".invalid-feedback").text("Введите значение от " + minValue + " до " + maxValue);
         }
         else {
             $(this).removeClass('is-invalid');
         }
     });
+}
+
+// Функция инициализации валидации полей вероятностей
+function initializeHandlers(obj) {
+    addNumberValidation(obj, 0, 100)
 
     obj.parent().children(".removeElement").click(function () {
         obj.closest(".inputProbability").remove()
