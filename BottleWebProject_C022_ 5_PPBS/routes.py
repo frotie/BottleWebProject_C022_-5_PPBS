@@ -76,6 +76,9 @@ def ons():
     except:
         return error("Неверно указаны вероятности для блоков")
 
+    if (triesCount > 1e6 or triesCount < 1):
+        return error("Неправильное число испытаний")
+
     baseNode.addElement(node1)
     baseNode.addElement(node2)
 
