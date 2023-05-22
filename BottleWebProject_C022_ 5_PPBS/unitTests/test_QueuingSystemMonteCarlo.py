@@ -67,16 +67,9 @@ class Test_test_QueuingSystemMonteCarlo(unittest.TestCase):
                          ]
             qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)                
             actual = qs.getMathematicalExpectationQSWithFailure(len(randomData), randomData)
-            self.assertEqual(expected, actual)    
+            self.assertEqual(expected, actual)
 
-    def test_QueuingSystemMonteCarloConstructor_RaiseExceptionValueError(self):        
-        canalsCount = 0
-        intensityFlowOfRequests = 0
-        requestExecutionMinute = 0
-        endTimeMinute = 0
-        self.assertRaises(ValueError, QueuingSystemMonteCarlo, canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
-
-    def test_monteCarloMethodWithFailure_RaiseExceptionValueError(self):
+    def test_getMathematicalExpectationQSWithFailure_RaiseExceptionValueError(self):
         canalsCount = 1
         intensityFlowOfRequests = 1
         requestExecutionMinute = 1
@@ -86,6 +79,12 @@ class Test_test_QueuingSystemMonteCarlo(unittest.TestCase):
         randomData = None
         self.assertRaises(TypeError, qs.getMathematicalExpectationQSWithFailure, repeatCount, randomData)
 
+    def test_QueuingSystemMonteCarloConstructor_RaiseExceptionValueError(self):
+        canalsCount = 0
+        intensityFlowOfRequests = 0
+        requestExecutionMinute = 0
+        endTimeMinute = 0
+        self.assertRaises(ValueError, QueuingSystemMonteCarlo, canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)        
 
 if __name__ == '__main__':
     unittest.main()
