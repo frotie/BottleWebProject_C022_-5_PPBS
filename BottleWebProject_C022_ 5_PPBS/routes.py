@@ -2,12 +2,15 @@
 Routes and views for the bottle application.
 """
 
+from distutils import file_util
+import math
 from models.MonteCarlo import WorkingBlock, Node, ConnectionType
 from models.QueuingSystemMonteCarlo import QueuingSystemMonteCarlo
 from bottle import route, view, post, request, response, template
 from datetime import datetime
 import json
 
+fileName= "log.txt"
 
 @route('/')
 @route('/home')
@@ -99,11 +102,15 @@ def SMOFailure():
         repeatCount = int(request.forms.get('repeatCount'))
         qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
         result = qs.getMathematicalExpectationQSWithFailure(repeatCount)
+        logToTxt("Количество каналов: {0} λ: {1} Время обслуживания заявки: {2} Конечное время: {3} Количество итераций: {4} Математическое ожидание: {5}"
+                 .format(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute, repeatCount, round(result, 2)))
         return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                         endTimeMinute = endTimeMinute, repeatCount = repeatCount, result = "Математическое ожидание: %.2f" % result)
     except: 
-         return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
+        logToTxt("Количество каналов: {0} λ: {1} Время обслуживания заявки: {2} Конечное время: {3} Количество итераций: {4} Математическое ожидание: Неверный ввод"
+                 .format(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute, repeatCount))
+        return template('SMOFailure', year=datetime.now().year, canalsCount = canalsCount, 
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                         endTimeMinute = endTimeMinute, repeatCount = repeatCount,result = "Неверный ввод")
 
@@ -119,16 +126,25 @@ def SMOQueue():
         if (requestInQueue == 0):
             requestInQueue = None
         qs = QueuingSystemMonteCarlo(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute)
-        result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)
+        result = qs.getMathematicalExpectationQSWithQueue(repeatCount, requestInQueue)        
+        logToTxt("Количество каналов: {0} λ: {1} Время обслуживания заявки: {2} Конечное время: {3} Количество итераций: {4} Ограничение очереди: {5} Математическое ожидание: {6}"
+                 .format(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute, repeatCount, requestInQueue, round(result, 2)))
         return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                         endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
                         result = "Математическое ожидание: %.2f" % result)
     except: 
-         return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
+        logToTxt("Количество каналов: {0} λ: {1} Время обслуживания заявки: {2} Конечное время: {3} Количество итераций: {4} Ограничение очереди: {5} Математическое ожидание: Неверный ввод"
+                 .format(canalsCount, intensityFlowOfRequests, requestExecutionMinute, endTimeMinute, repeatCount, requestInQueue))
+        return template('SMOQueue', year=datetime.now().year, canalsCount = canalsCount, 
                         intensityFlowOfRequests = intensityFlowOfRequests, requestExecutionMinute = requestExecutionMinute,
                         endTimeMinute = endTimeMinute, repeatCount = repeatCount, requestInQueue = requestInQueue,
                         result = "Неверный ввод")
 
 def error(str):
     return json.dumps({ "error": str })
+
+def logToTxt(str):
+    f = open(fileName, 'a', encoding="utf-8")
+    f.write("{0} {1}\n".format(str, datetime.now()))
+    f.close()
